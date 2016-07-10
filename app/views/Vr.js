@@ -31,7 +31,7 @@ var VrView = Backbone.View.extend({
     },
 
     getEmbedUrl: function( uid ) {
-        var tplUrl = 'http://sketchfab.com/models/{{UID}}/embed';
+        var tplUrl = 'https://sketchfab.com/models/{{UID}}/embed';
         var params = {
             'cardboard': 1,
             'autostart': 1,
