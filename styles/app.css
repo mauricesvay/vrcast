@@ -1,0 +1,34 @@
+html,
+body,
+.app {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+html {
+    height: calc(100% + 1px);
+}
+
+.vr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #333;
+    color: #AAA;
+    width: 100%;
+    height: 100%;
+}
+    .vr .viewer {
+        display: block;
+        position: absolute;
+        border: 0;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        visibility: hidden;
+    }
+    .vr .viewer.active {
+        visibility: visible;
+    }

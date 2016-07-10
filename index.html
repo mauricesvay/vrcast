@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>VR Cast</title>
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<link rel="stylesheet" href="./styles/app.css" media="screen" title="no title" charset="utf-8">
+</head>
+<body>
+<div class="app"></div>
+
+
+<script type="text/template" data-name="home.html">
+<div class="container-fluid">
+	<div class="screen home">
+		<div class="panel panel-default">
+			<div class="panel-body">
+			    <form class="form-inline">
+					<label for="room">Enter a room name</label>
+			        <input class="form-control" value="<%= suggestedRoomName %>" type="text" name="room" id="room" size="40">
+					<button type="submit" class="btn btn-primary">Start casting</button>
+			    </form>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+
+<script type="text/template" data-name="room.html">
+<div class="container-fluid">
+	<div class="screen room">
+		<div class="row">
+			<div class="room-cast col-md-6">
+			    <div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Select a 3D model to cast</h3>
+					</div>
+					<div class="panel-body">
+					    <form class="form-inline">
+							<div class="form-group">
+					        <label for="modeluid">Enter a model id:</label>
+					        <input class="form-control" type="text" id="modeluid" value="<%= currentModel %>" name="modeluid" size="36" placeholder="aa640333d0f24606b887964bd4a0bd61">
+							</div>
+							<button type="submit" class="btn btn-primary">Cast</button>
+					    </form>
+
+						<div class="currentModel">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="room-connect col-md-6">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">Connect a mobile phone</h3>
+					</div>
+					<div class="panel-body">
+						<a href="/#vr/<%= id %>" class="shortUrl">/#vr/<%= id %></a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</script>
+
+<script type="text/template" data-name="vr.html">
+<div class="screen vr">
+    <div class="waiting">
+        Waiting for VR scene&hellip;
+    </div>
+	<iframe src="about:blank" class="viewer"></iframe>
+</div>
+</script>
+
+<script type="text/template" data-name="model.html">
+	<div class="panel panel-default">
+		<div class="panel-body">
+			<div class="media">
+				<div class="media-left">
+					<a href="<%= model.viewerUrl %>">
+						<img class="media-object" src="<%= model.preview %>" alt="<%= model.name %>">
+					</a>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading"><a href="<%= model.viewerUrl %>"><%= model.name %></a></h4>
+			    	<p>by <%= model.user.displayName %></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</script>
+
+</body>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.13.1/lodash.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.3.3/backbone-min.js"></script>
+<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+<script>
+	// Initialize Firebase
+	var config = {
+		apiKey: "AIzaSyDIM7JLKB-HHx7FmRwh-WkA2k3Q6vesQh0",
+		authDomain: "vrcast-48bba.firebaseapp.com",
+		databaseURL: "https://vrcast-48bba.firebaseio.com",
+		storageBucket: "",
+	};
+	firebase.initializeApp(config);
+</script>
+<script src="app/NoSleep.min.js"></script>
+<script src="app/sketchfab-sdk.2.1.1.min.js"></script>
+<script src="app/models/Room.js"></script>
+<script src="app/views/Home.js"></script>
+<script src="app/views/Room.js"></script>
+<script src="app/views/Vr.js"></script>
+<script src="app/nameGenerator.js"></script>
+<script src="app/app.js"></script>
+</html>
